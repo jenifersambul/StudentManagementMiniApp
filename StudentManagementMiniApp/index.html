@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap" rel="stylesheet">
+
+  <!-- My CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/0117776ae9.js" crossorigin="anonymous"></script>
+
+  <title>Mid Project</title>
+</head>
+<body id="page_top">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Student Management MiniApp</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ml-auto">
+          <a class="nav-link active" href="#">HOME <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="about.html">ABOUT</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Akhir Navbar -->
+
+  <br>
+  <div class="container">
+    <div class="row justify-content-center">
+      <h1>Student Management MiniApp</h1>
+    </div>
+    <hr>
+  </div>
+
+  <!-- Form -->
+  <div class="container">
+    <div class="row-mt-3 row justify-content-center">
+      <div class="col-md-8 colleft">
+        <h4 class="mt-3">Add Student</h4>
+          <button type="button" class="btn main mt-2" id="add_student_button" data-toggle="collapse" data-target="#student_form_collapsable" aria-expanded="false" aria-controls="student_form_collapsable" onclick="showaddstudentform_button()">Show Form Add New Student</button>
+            <form id="my_form">
+              <div class="collapse multi-collapse" id="student_form_collapsable">
+                <div class="form-group mt-3">
+                  <!-- Student ID -->
+                  <label for="formstudent_id">Student ID (NIM)</label>
+                    <input class="form-control" type="text" id="formstudent_id" aria-describedby="formstudent_id_help" placeholder="105021810001">
+                  <!-- Studen Name -->
+                  <label for="formstudent_name" class="mt-2">Full Name</label>
+                    <input class="form-control" type="text" id="formstudent_name" aria-describedby="formstudent_name_help" placeholder="John Doe">
+                    <!-- Gender -->
+                    <h6 class="mt-3">Gender</h6>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="genderRadio" id="genderRadio1" value="Male" checked>
+                      <label class="form-check-label" for="genderRadio1">Pria</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="genderRadio" id="genderRadio2" value="Female" checked>
+                      <label class="form-check-label" for="genderRadio2">Wanita</label>
+                    </div>
+                    <!-- Faculty -->
+                    <h6 class="mt-3">Faculty</h6>
+                    <div class="input-group mb-2">
+                    <select class="form-control" id="formstudent_faculty" onchange="formstudentfaculty_onchange()"> 
+                        <option>-- SELECT FACULTY --</option>
+                        <option>Akademi Sekretari Manajemen Indonesia Klabat</option>
+                        <option>Fakultas Ekonomi dan Bisnis</option>
+                        <option>Fakultas Filsafat</option>
+                        <option>Fakultas Ilmu Komputer</option>
+                        <option>Fakultas Keguruan dan Ilmu Pendidikan</option>
+                        <option>Fakultas Keperawatan</option>
+                        <option>Fakultas Pertanian</option>
+                        <option>Pascasarjana</option>
+                    </select> 
+                    </div> 
+                    <!-- Program of Study -->
+                    <h6 class="mt-3">Program of Study</h6>
+                    <div class="input-group">
+                        <select class="form-control" id="formstudent_programofstudy">
+                        <option>-- SELECT PROGRAM OF STUDY --</option>
+                        </select> 
+                    </div> 
+                    <button type="button" class="btn btn-block mt-3" id="form_add_student_button" onclick="add_student()">Add Student</button>
+                </div>
+              </div>
+            </form>
+      </div>
+            <div class="col-md-4 colright mt-3">
+              <h4>Filters Student By</h4>
+              <!-- FIlter by Faculty -->
+              <h6 class="mt-3">Faculty</h6>
+              <select class="form-control" id="selectByFaculty">
+                <option selected>-- SELECT FACULTY --</option>
+                <option>Akademi Sekretari Manajemen Indonesia Klabat</option>
+                <option>Fakultas Ekonomi dan Bisnis</option>
+                <option>Fakultas Filsafat</option>
+                <option>Fakultas Ilmu Komputer</option>
+                <option>Fakultas Keguruan dan Ilmu Pendidikan</option>
+                <option>Fakultas Keperawatan</option>
+                <option>Fakultas Pertanian</option>
+                <option>Pascasarjana</option>
+              </select>
+              <button type="button" class="btn-sm btn-block mt-3" id="show_student_button" onclick="searchby_Faculty()"><i class="fas fa-search"></i></button>
+              <!-- Filter by Program of Study -->
+              <h6 class="mt-3">Program of Study</h6>
+              <select class="form-control" id="selectByProgramOfStudy">
+                <option selected>-- SELECT PROGRAM OF STUDY --</option>
+                <option>Agroteknologi</option>
+                <option>Akuntansi</option>
+                <option>Ilmu Filsafat</option>
+                <option>Informatika</option>
+                <option>Keperawatan</option>
+                <option>Magister Manajemen</option>
+                <option>Magister Teologi</option>
+                <option>Manajemen</option>
+                <option>Pendidikan Agama</option>
+                <option>Pendidikan Bahasa Inggris</option>
+                <option>Pendidikan Ekonomi</option>
+                <option>Pendidikan Luar Sekolah</option>
+                <option>Profesi Ners</option>
+                <option>Sekretari (D3)</option>
+                <option>Sistem Informasi</option>
+              </select>
+              <button type="button" class="btn-sm btn-block mt-3" id="show_student_button" onclick="searchby_ProgramOfStudy()"><i class="fas fa-search"></i></button>
+            </div>
+    </div>
+    <hr class="mt-3">
+  </div>
+  
+  <!-- Our Student -->
+  <div class="container">
+    <div class="row justify-content-center">
+      <h1>Our Student</h1>
+      <input class="form-control mt-2" id="formsearchstudent" type="text" placeholder="Search student by name..." oninput="search_student()">
+      <table class="table mt-4" id="studenttabledata">
+        <thead>
+          <tr>
+            <th scope="col">Student ID (NIM)</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Faculty</th>
+            <th scope="col">Program of Study</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody id="studenttabledata_body">
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row justify-content-center">
+        <h8>made with</h8>
+        <div class="div">
+          <i class="fab fa-js-square ml-2"></i>
+          <i class="fab fa-bootstrap ml-1"></i>
+          <i class="fab fa-font-awesome ml-1"></i>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <h8>jenifersambul&copy; 2021</h8> 
+      </div>
+    </div>
+  </footer>
+  <!-- Akhir Footer --> 
+
+  
+  <script src='main.js'></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
